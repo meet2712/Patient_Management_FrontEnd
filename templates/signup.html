@@ -11,12 +11,12 @@
     <title>Patient Management</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/style.css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='/css/signup.css')}}" rel="stylesheet">
 
-    <link href="static/signup.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link href="static/css/simple-sidebar.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='/css/simple-sidebar.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -79,14 +79,14 @@
                 <div class="agileits-top">
                     <form action="/signup" enctype="multipart/form-data" method="post">
                         <input class="text" type="text" name="username" placeholder="Username" required="">
-<!--                        <input class="text email" type="email" name="email" placeholder="Email" required="">-->
+                        <input class="text email" type="email" name="email" placeholder="Email" required="">
                         <input class="text" type="password" name="password" placeholder="Password" required="">
-<!--                        <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password"-->
-<!--                            &lt;!&ndash;&ndash;&gt;   required="">-->
+                        <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password"
+                          &lt;!&ndash;&ndash;&gt;   required="">
                         <div class="wthree-text">
                             <label class="anim">
-<!--                                <input type="checkbox" class="checkbox" required="">-->
-<!--                                <span>I Agree To The Terms & Conditions</span>-->
+                              <input type="checkbox" class="checkbox" required="">
+                               <span>I Agree To The Terms & Conditions</span>
                             </label>
                             <div class="clear"></div>
                         </div>
@@ -104,8 +104,8 @@
 <!-- /#wrapper -->
 
 <!-- Bootstrap core JavaScript -->
-<script src="static/vendor/jquery/jquery.min.js"></script>
-<script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Menu Toggle Script -->
 <script>

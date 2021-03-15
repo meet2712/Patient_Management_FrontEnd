@@ -11,12 +11,11 @@
   <title>Patient Management</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="templates/signup.css" rel="stylesheet">
-  <link href="templates/style.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{url_for('static', filename='/css/signup.css')}}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="static/css/simple-sidebar.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='/css/simple-sidebar.css') }}" rel="stylesheet">
 
 </head>
 
@@ -77,10 +76,9 @@
         <h1>Login Here</h1>
         <div class="main-agileinfo">
           <div class="agileits-top">
-            <form action="#" method="post">
-              <input class="text" type="text" name="Username" placeholder="Username" required="">
-              <input class="text" type="password" name="password" placeholder="Password" required="">
-
+            <form action="/validate" method="POST">
+              <input class="text" type="text"     name="username" id = 'username' placeholder="Username" required="">
+              <input class="text" type="password" name="password" id = 'password' placeholder="Password" required="">
               <input type="submit" value="Login">
             </form>
             <a href="#">Forgot Password</a>
@@ -95,8 +93,8 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="static/vendor/jquery/jquery.min.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- Menu Toggle Script -->
   <script>

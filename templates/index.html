@@ -11,11 +11,10 @@
   <title>Patient Management</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="static/signup.css" rel="stylesheet">
-  <link href="static/style.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
   <!-- Custom styles for this template -->
-  <link href="static/css/simple-sidebar.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='/css/simple-sidebar.css') }}" rel="stylesheet">
 
 </head>
 
@@ -81,8 +80,8 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="static/vendor/jquery/jquery.min.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="{{ url_for('static', filename='/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 
   <!-- Menu Toggle Script -->
