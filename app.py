@@ -32,7 +32,7 @@ def validate():
 
     response = requests.request("POST", url, data=payload)
     json_data = json.loads(response.text)
-    print(type(json_data))
+    # print(type(json_data))
     return render_template('test.html', value=json_data)
 
 
