@@ -7,12 +7,8 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/form_login', methods=['POST','GET'])
+@app.route('/login')
 def index():
-    return render_template('login.html')
-
-@app.route('/form_signup', methods=['POST','GET'])
-def signp():
     return render_template('signup.html')
 
 
