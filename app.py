@@ -10,7 +10,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/test', )
+@app.route('/test', methods=['GET'])
 def test(value):
     return render_template('test.html', value)
 
