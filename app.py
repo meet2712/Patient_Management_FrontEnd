@@ -2,12 +2,49 @@ import flask
 from flask import *
 import requests
 
+try:
+
+    from flask import Flask
+
+    from flask import redirect, url_for, request, render_template, send_file
+    from io import BytesIO
+
+    from flask_wtf.file import FileField
+    from wtforms import SubmitField
+    from flask_wtf import Form
+    import sqlite3
+
+    print("All Modules Loaded .... ")
+except:
+    print(" Some Module are missing ...... ")
+
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "secret"
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+@app.route('/', methods=["GET", "POST"])
+def index():
+    form = UploadForm()
+    if request.method == "POST":
+
+        if form.validate_on_submit():
+            file_name = form.file.data
+            database(name=file_name.filename, data=file_name.read())
+            print("FILE : {}".format(file_name=filename))
+            return render_template("index.html", form=form)
+
+    return render_template("index.html", form=form)
+
+
+class UploadForm(Form):
+    file = FileField()
+    submit = SubmitField("Submit")
+
+
+#
+# @app.route('/')
+# def home():
+#     return render_template('index.html')
 
 
 @app.route('/test', methods=['GET'])
@@ -15,14 +52,13 @@ def test(value):
     return render_template('test.html', value)
 
 
-@app.route('/login', methods=['POST','GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     return render_template('login.html')
 
 
 @app.route('/validate', methods=['POST'])
 def validate():
-
     username = request.form.get("username")
     password = request.form.get("password")
     url = "https://patient-managment-api.herokuapp.com/token"
@@ -36,7 +72,7 @@ def validate():
     return render_template('test.html', value=json_data)
 
 
-@app.route('/patient',  methods=['POST','GET'])
+@app.route('/patient', methods=['POST', 'GET'])
 def patient():
     url = "https://patient-managment-api.herokuapp.com/patient"
 
@@ -51,8 +87,7 @@ def patient():
     return render_template('trial.html')
 
 
-
-@app.route('/signup', methods=['POST','GET'])
+@app.route('/signup', methods=['POST', 'GET'])
 def signp():
     return render_template('signup.html')
 

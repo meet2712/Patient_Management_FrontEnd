@@ -68,15 +68,31 @@
         </div>
       </nav>
 
-      <div class="container-fluid">
-        <h1 class="mt-4">Patient Management System</h1>
-        <p>Patient Management API system will provide access to external entities to securely request access to data in the HMS.</p>
-        <p>Building a cloud-based corpus of mock data for a HMS that includes patient records, test results, images etc. Develop a set of APIs to provide access to the data for authenticated users.</p>
-      </div>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> Upload Your Report Here </h1>
+
+    <br>
+    <br>
+
+
+      <form class="" action="{{ url_for('index') }}" method="POST", enctype="multipart/form-data">
+        {{  form.hidden_tag()  }}
+        {{  form.file()  }}
+        {{ form.submit(  class="btn btn-primary"  )  }}
+      </form>
     </div>
+</div>
+
+
+{% endblock %}
     <!-- /#page-content-wrapper -->
 
-  </div>
+    </div>
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
