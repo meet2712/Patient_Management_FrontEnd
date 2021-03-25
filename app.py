@@ -92,5 +92,25 @@ def signp():
     return render_template('signup.html')
 
 
+@app.route('/validate_signup', methods=['POST','GET'])
+def validate_signup():
+
+    import http.client
+
+    conn = http.client.HTTPSConnection("patient-managment-api.herokuapp.com")
+    payload = ''
+    headers = {
+        'accept': 'application/json'
+    }
+    w = "username"
+    x = "name"
+    y = "email"
+    z = "password"
+    string = "/users?name=" + w + "&username=" + x + "&password=" + y + "&usertype=" + z
+    conn.request("POST", string, payload, headers)
+    res = conn.getresponse()
+    data = res.read()
+    print(data.decode("utf-8"))
+
 if __name__ == '__main__':
     app.run(debug=True)
