@@ -1,7 +1,7 @@
 import flask
 from flask import *
 import requests
-
+import http.client
 try:
 
     from flask import Flask
@@ -24,16 +24,7 @@ app.config["SECRET_KEY"] = "secret"
 
 @app.route('/', methods=["GET", "POST"])
 def index():
-    form = UploadForm()
-    if request.method == "POST":
-
-        if form.validate_on_submit():
-            file_name = form.file.data
-            database(name=file_name.filename, data=file_name.read())
-            print("FILE : {}".format(file_name=filename))
-            return render_template("index.html", form=form)
-
-    return render_template("index.html", form=form)
+    return render_template("index.html")
 
 
 class UploadForm(Form):
@@ -94,23 +85,31 @@ def signp():
 
 @app.route('/validate_signup', methods=['POST','GET'])
 def validate_signup():
+    username = request.form.get("username")
+    password = request.form.get("password")
+    confirm_password = request.form.get("confirm_password")
+    email = request.form.get("email")
+    name = request.form.get("name")
 
-    import http.client
-
-    conn = http.client.HTTPSConnection("patient-managment-api.herokuapp.com")
-    payload = ''
-    headers = {
-        'accept': 'application/json'
-    }
-    w = "username"
-    x = "name"
-    y = "email"
-    z = "password"
-    string = "/users?name=" + w + "&username=" + x + "&password=" + y + "&usertype=" + z
-    conn.request("POST", string, payload, headers)
-    res = conn.getresponse()
-    data = res.read()
-    print(data.decode("utf-8"))
+    if password == confirm_password:
+        conn = http.client.HTTPSConnection("patient-managment-api.herokuapp.com")
+        payload = ''
+        headers = {
+            'accept': 'application/json'
+        }
+        w = username
+        x = name
+        y = email
+        z = password
+        string = "/users?name=" + w + "&username=" + x + "&password=" + z + "&email=" + y
+        conn.request("POST", string, payload, headers)
+        res = conn.getresponse()
+        data = res.read()
+        print(data.decode("utf-8"))
+        return render_template("login.html")
+    else:
+        flask.flash("Password Doesnot Match")
+        return render_template("signup.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
